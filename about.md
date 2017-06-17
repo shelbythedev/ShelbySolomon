@@ -4,33 +4,65 @@ title: Résumé & CV
 share: true
 ---
 
-# Neo-HPSTR Jekyll Theme
+> The only source of knowledge is experience. \- Albert Einstein
 
-Neo-HPSTR Jekyll is a responsive and modern blog template.
+## About Me
 
-# Live Demo
+As a full stack developer, I am well-versed in both front-end and back-end development -- thus being about to cross the bridge between skill sets. Whether it's creating a modern, user-friendly UX/UI design, engineering server-side code to communicate with multiple databases, or architecting an elegant solution with multiple APIs, queues, and apps, I am able to provide outside-the-box thinking as well as a creative development process.
 
-You can see it running [here](http://blog.rhesoft.com/) and [here](http://aronbordin.com/neo-hpstr-jekyll-theme/).
+## Key Skills
 
+* MongoDB
+* Node.js
+* Express
+* AngularJS
+* Ruby on Rails
+* REDIS
+* ES6
+* Sass
+* Object-Oriented CSS
 
-## What Neo-HPSTR brings to the table:
+## Employment History
 
-* Modern design.
-* Responsive templates for post, page, and post index `_layouts`. Looks great on mobile, tablet, and desktop devices.
-* Gracefully degrades in older browsers. Compatible with Internet Explorer 8+ and all modern browsers.  
-* Sweet topbar animated menu with support for drop-downs.
-* Optional [Disqus](http://disqus.com) comments and social sharing links.
-* [Open Graph](https://developers.facebook.com/docs/opengraph/) and [Twitter Cards](https://dev.twitter.com/docs/cards) support for a better social sharing experience.
-* Simple [custom 404 page](http://mmistakes.github.io/hpstr-jekyll-theme/404.html) to get you started.
-* Stylesheets for Pygments and Coderay [syntax highlighting](http://mmistakes.github.io/hpstr-jekyll-theme/code-highlighting-post/) to make your code examples look snazzy
-* Author panel, with social links
-* Read more tag support(similar with Wordpress ).
+### THINaër
+**Junior Developer**
+*April 2016 - Present*
 
-![Preview](http://aronbordin.com/images/neo-hpstr-jekyll-theme-preview.png)
+Software startup focused on Internet-of-Things (IoT) and Bluetooth Low Energy technology who developed a proprietary protocol for BLE beacons and gateways in asset tracking and management.
+* Along with one other junior developer, developed multiple iterations of an end-user application which took the company from high-level concept to final production deployment to clients.
+* Architected and engineered a custom, user-definable trigger and action feature (if-this-then-that) based on a beacon's location, environmental status, or movement. A user could then set actions such as sending email, changing in-app device status, or sending a POST or GET request to an external service.
+* Member of team of three who developed multiple APIs, consumers, queue/lambda services, and applications which transport data all the way from BLE hardware (advertising packets) to end-user through multiple layers of security and encryption.
+* Assumed a side-role, redesigning the company's retail website, thus in part shaping marketing and branding direction in an emerging technology field.
 
+### Great Southern Bancorp
+**Data Center Computer Operator**
+*February 2015 - March 2016*
 
----
+Large regional banking group with over 150 banking centers throughout the midwest.
+* Processed proof-of-deposit for all incoming/outgoing transactions
+* Personally responsible for closing out approximately 25 locations each day, ensuring transactions balance and POD paper trails are accounted for before dismissing staff at end of day.
+* Transmitted end-of-day transaction records to colleague banks and to Federal Reserve Banks, being held accountable for nearly $150 million in digital transactions daily.
 
-## Getting Started
+### Red Lake Studio
+**Owner, CTO**
+*January 2015 - September 2015*
 
-Neo-HPSTR takes advantage of Sass and data files to make customizing easier. These features require Jekyll 2.x and will not work with older versions of Jekyll.
+Online marketing consultancy for small businesses.
+* Met with clients, and determined best course of action for their digital presence.
+* Built websites using Wordpress and various plugins.
+* Used basic front-end technologies such as HTML/CSS.
+
+### Branson Police Department & Springfield/Greene County E-911
+**911 Telecommunicator & Dispatcher**
+*August 2008 - November 2010*
+Communication centers for police, sheriff, and fire departments.
+* Answered 911 emergency calls and gathered information for dispatchers
+* Dispatched calls for service
+* Assisted in jail and with courts/warrants as needed
+* Established communication with other agencies in times of crisis
+
+### CongoBlu Creative Studio
+**Owner, Chief Designer**
+*May 2002 - December 2014*
+
+Self-employed freelance concert and theatrical lighting, audio, and effects designer.
