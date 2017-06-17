@@ -5,7 +5,7 @@ description:      I am a software engineer who specializes in full-stack web app
 disqus_shortname:
 reading_time:     false # if true, shows the estimated reading time for a post
 words_per_minute: 200
-logo:             images/logo.png # logo visible in the topbar
+logo:             images/myAvatar.png # logo visible in the topbar
 excerpt_separator: <!--more-->
 # Your site's domain goes here (eg: //mmistakes.github.io, http://mademistakes.com, etc)
 # When testing locally leave blank or use http://localhost:4000
@@ -20,6 +20,11 @@ url: http://localhost:4000
 menu:
   - title: 'Home'
     url: '/'
+  - title: 'Résumé'
+    url: '/about'
+  - title: 'GitHub'
+    url: "https://github.com/shelbythedev"
+
   # - title: 'Tags'
   #   url: '/tags'
   # - title: 'Categories'
