@@ -5,3 +5,5 @@ codekit-config.json
 node_modules
 .sass-cache
 *.gem
+
+./_sites
