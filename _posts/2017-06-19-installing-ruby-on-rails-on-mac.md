@@ -2,6 +2,7 @@
 layout: post
 title: Installing Ruby on Rails on Mac
 share: true
+categories: How-To Ruby OSX
 ---
 
 If you're new to Ruby on Rails, or perhaps it's been too long since you've set up a new install, here's a quick and easy way to set up Ruby and Rails on your computer. I've also included some common aides in the process, such as Homebrew and RVM. If you encounter any errors along the way, feel free to drop me a line.
