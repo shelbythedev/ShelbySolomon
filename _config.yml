@@ -24,12 +24,12 @@ menu:
     url: '/about'
   - title: 'GitHub'
     url: "https://github.com/shelbythedev"
+  - title: 'Categories'
+    url: '/categories'
+    type: 'categories'
 
   # - title: 'Tags'
   #   url: '/tags'
-  # - title: 'Categories'
-  #   url: '/categories'
-  #   type: 'categories'
   # - title: 'Favorites'
   #   url: '#'
   #   submenu:
