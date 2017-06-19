@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+<title type="text">Shelby Solomon</title>
+<generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
+<link rel="self" type="application/atom+xml" href="https://shelbysolomon.herokuapp.com/feed.xml" />
+<link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com" />
+<updated>2017-06-19T12:47:09-05:00</updated>
+<id>https://shelbysolomon.herokuapp.com/</id>
+<author>
+  <name>Shelby Solomon</name>
+  <uri>https://shelbysolomon.herokuapp.com/</uri>
+  <email>shelby@shelbysolomon.net</email>
+</author>
+
+
+<entry>
+  <title type="html"><![CDATA[Installing Ruby on Rails on Mac]]></title>
+ <link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac/" />
+  <id>https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac</id>
+  <published>2017-06-19T00:00:00-05:00</published>
+  <updated>2017-06-19T00:00:00-05:00</updated>
+  <author>
+    <name>Shelby Solomon</name>
+    <uri>https://shelbysolomon.herokuapp.com</uri>
+    <email>shelby@shelbysolomon.net</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;If you’re new to Ruby on Rails, or perhaps it’s been too long since you’ve set up a new install, here’s a quick and easy way to set up Ruby and Rails on your computer. I’ve also included some common aides in the process, such as Homebrew and RVM. If you encounter any errors along the way, feel free to drop me a line.&lt;/p&gt;
+
+&lt;h2 id=&quot;upgrade-osx&quot;&gt;Upgrade OSX&lt;/h2&gt;
+&lt;p&gt;First things first: if you’re going to be doing a fresh install of Ruby on Rails, now would be an excellent time to run all necessary updates on your Mac. You can check if you have the latest updates by accessing &lt;strong&gt;Apple menu &amp;gt; About This Mac &amp;gt; Overview &amp;gt; Software Update…&lt;/strong&gt;. This will load the App Store and check for any available OSX updates.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-xcode-developer-tools&quot;&gt;Install XCode Developer Tools&lt;/h2&gt;
+&lt;p&gt;XCode is the Apple suite of tools and compilers necessary for doing development on a Mac. To install XCode, open a new terminal window and type:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ xcode-select --install
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Once that has installed, you’ll want to check to make sure the install was successful.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ gcc -v
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If the above command returns something like &lt;code class=&quot;highlighter-rouge&quot;&gt;Apple LLVM version X.X.X&lt;/code&gt;, then you should be good to go.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-homebrew&quot;&gt;Install Homebrew&lt;/h2&gt;
+&lt;p&gt;Homebrew is the most common package manager for Mac. With Homebrew you can easily install frameworks quickly and easily. You’ll want to run the command below:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ruby -e &quot;$(curl fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This may take a while to install, but once it completes, run:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  brew doctor
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;You should receive &lt;code class=&quot;highlighter-rouge&quot;&gt;Your system is ready to brew.&lt;/code&gt;. If you get any errors, you may have non-Homebrew installed packages or other problems.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-rvm-for-ruby-version-management-and-rails&quot;&gt;Install RVM for Ruby version management and Rails&lt;/h2&gt;
+&lt;p&gt;RVM (Ruby Version Manager) allows you to install multiple rubies (versions) as well as multiple gemsets on your machine.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;followed by&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ \curl -sSL https://get.rvm.io | bash -s stable --ruby --rails
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;Once install is complete, run &lt;code class=&quot;highlighter-rouge&quot;&gt;ruby -v&lt;/code&gt; to check Ruby install and version, and &lt;code class=&quot;highlighter-rouge&quot;&gt;rails -v&lt;/code&gt; to check Rails.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-bundler&quot;&gt;Install Bundler&lt;/h2&gt;
+&lt;p&gt;Bundler manages your Ruby gems for each applicaiton you create. We’ll want to install it globally, so you have access to it with each new application.&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ rvm gemset list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;You should be on &lt;code class=&quot;highlighter-rouge&quot;&gt;(default)&lt;/code&gt;. If not, run &lt;code class=&quot;highlighter-rouge&quot;&gt;rvm gemset use default&lt;/code&gt; to switch back. Now run:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ rvm @global do gem install bundler
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;a-quick-note-on-rvm&quot;&gt;A quick note on RVM&lt;/h2&gt;
+&lt;p&gt;If you haven’t used RVM before, it can be a little tricky. A good rule of thumb is to keep each application’s gems in a separate gemset so things don’t get mixed up between versions or applications.&lt;/p&gt;
+
+&lt;p&gt;To view your current gemset:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ rvm gemset list
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;To create a new gemset:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ rvm gemset create your_gemset_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;To switch gemsets:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ rvm gemset use other_gemset_name
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;final-words&quot;&gt;Final Words&lt;/h2&gt;
+&lt;p&gt;Ruby on Rails is an amazingly powerful framework. It’s fantastic to learn, and fun to use. Once you get the initial configurations complete, you’ll be able to create applications in no time!&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac/&quot;&gt;Installing Ruby on Rails on Mac&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;https://shelbysolomon.herokuapp.com&quot;&gt;Shelby Solomon&lt;/a&gt; on June 19, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+</feed>
