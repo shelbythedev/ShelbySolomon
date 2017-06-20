@@ -98,9 +98,6 @@
                   <li class="sub-item"><a href="https://shelbysolomon.herokuapp.com/categories/#How-To">How-To</a></li>
               
                 
-                  <li class="sub-item"><a href="https://shelbysolomon.herokuapp.com/categories/#Linux">Linux</a></li>
-              
-                
                   <li class="sub-item"><a href="https://shelbysolomon.herokuapp.com/categories/#OSX">OSX</a></li>
               
                 
@@ -184,9 +181,6 @@
                 <li><a href="https://shelbysolomon.herokuapp.com/categories/#How-To">How-To</a></li>
             
               
-                <li><a href="https://shelbysolomon.herokuapp.com/categories/#Linux">Linux</a></li>
-            
-              
                 <li><a href="https://shelbysolomon.herokuapp.com/categories/#OSX">OSX</a></li>
             
               
@@ -210,16 +204,21 @@
   <header>
     
     <div class="entry-meta">
-      <span class="entry-date date published updated"><time datetime="2017-06-20T00:00:00-05:00"><a href="https://shelbysolomon.herokuapp.com/how-to/osx/linux/git/install-git-and-git-aware/">June 20, 2017</a></time></span><span class="author vcard"><span class="fn"><a href="https://shelbysolomon.herokuapp.com/about/" title="About Shelby Solomon">Shelby Solomon</a></span></span>
+      <span class="entry-date date published updated"><time datetime="2017-06-20T00:00:00-05:00"><a href="https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/">June 20, 2017</a></time></span><span class="author vcard"><span class="fn"><a href="https://shelbysolomon.herokuapp.com/about/" title="About Shelby Solomon">Shelby Solomon</a></span></span>
       
     </div><!-- /.entry-meta -->
     
-      <h1 class="entry-title"><a href="https://shelbysolomon.herokuapp.com/how-to/osx/linux/git/install-git-and-git-aware/" rel="bookmark" title="Install Git & Git Aware Terminal" itemprop="url">Install Git & Git Aware Terminal</a></h1>
+      <h1 class="entry-title"><a href="https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/" rel="bookmark" title="Install Git & Git Aware Terminal" itemprop="url">Install Git & Git Aware Terminal</a></h1>
     
   </header>
   <div class="entry-content">
-      
+      <p>Installing Git on your Mac is silly easy. I’ll walk you through the process in Terminal, as well as guide you through how to install Git Aware Terminal – an awesome little program that keeps you from having to constantly check your Git status.</p>
 
+
+      
+          <div align="center">
+              <div markdown="0"><a href="https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/" class="btn btn-info">Continue Reading ...</a></div>
+          </div>
       
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->
@@ -238,71 +237,11 @@
   <div class="entry-content">
       <p>If you’re new to Ruby on Rails, or perhaps it’s been too long since you’ve set up a new install, here’s a quick and easy way to set up Ruby and Rails on your computer. I’ve also included some common aides in the process, such as Homebrew and RVM. If you encounter any errors along the way, feel free to drop me a line.</p>
 
-<h2 id="upgrade-osx">Upgrade OSX</h2>
-<p>First things first: if you’re going to be doing a fresh install of Ruby on Rails, now would be an excellent time to run all necessary updates on your Mac. You can check if you have the latest updates by accessing <strong>Apple menu &gt; About This Mac &gt; Overview &gt; Software Update…</strong>. This will load the App Store and check for any available OSX updates.</p>
 
-<h2 id="install-xcode-developer-tools">Install XCode Developer Tools</h2>
-<p>XCode is the Apple suite of tools and compilers necessary for doing development on a Mac. To install XCode, open a new terminal window and type:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ xcode-select --install
-</code></pre>
-</div>
-<p>Once that has installed, you’ll want to check to make sure the install was successful.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ gcc -v
-</code></pre>
-</div>
-<p>If the above command returns something like <code class="highlighter-rouge">Apple LLVM version X.X.X</code>, then you should be good to go.</p>
-
-<h2 id="install-homebrew">Install Homebrew</h2>
-<p>Homebrew is the most common package manager for Mac. With Homebrew you can easily install frameworks quickly and easily. You’ll want to run the command below:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  ruby -e "$(curl fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-</code></pre>
-</div>
-<p>This may take a while to install, but once it completes, run:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  brew doctor
-</code></pre>
-</div>
-<p>You should receive <code class="highlighter-rouge">Your system is ready to brew.</code>. If you get any errors, you may have non-Homebrew installed packages or other problems.</p>
-
-<h2 id="install-rvm-for-ruby-version-management-and-rails">Install RVM for Ruby version management and Rails</h2>
-<p>RVM (Ruby Version Manager) allows you to install multiple rubies (versions) as well as multiple gemsets on your machine.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
-</code></pre>
-</div>
-<p>followed by</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ \curl -sSL https://get.rvm.io | bash -s stable --ruby --rails
-</code></pre>
-</div>
-<p>Once install is complete, run <code class="highlighter-rouge">ruby -v</code> to check Ruby install and version, and <code class="highlighter-rouge">rails -v</code> to check Rails.</p>
-
-<h2 id="install-bundler">Install Bundler</h2>
-<p>Bundler manages your Ruby gems for each applicaiton you create. We’ll want to install it globally, so you have access to it with each new application.</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ rvm gemset list
-</code></pre>
-</div>
-<p>You should be on <code class="highlighter-rouge">(default)</code>. If not, run <code class="highlighter-rouge">rvm gemset use default</code> to switch back. Now run:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ rvm @global do gem install bundler
-</code></pre>
-</div>
-
-<h2 id="a-quick-note-on-rvm">A quick note on RVM</h2>
-<p>If you haven’t used RVM before, it can be a little tricky. A good rule of thumb is to keep each application’s gems in a separate gemset so things don’t get mixed up between versions or applications.</p>
-
-<p>To view your current gemset:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ rvm gemset list
-</code></pre>
-</div>
-<p>To create a new gemset:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ rvm gemset create your_gemset_name
-</code></pre>
-</div>
-<p>To switch gemsets:</p>
-<div class="highlighter-rouge"><pre class="highlight"><code>  $ rvm gemset use other_gemset_name
-</code></pre>
-</div>
-
-<h2 id="final-words">Final Words</h2>
-<p>Ruby on Rails is an amazingly powerful framework. It’s fantastic to learn, and fun to use. Once you get the initial configurations complete, you’ll be able to create applications in no time!</p>
-
+      
+          <div align="center">
+              <div markdown="0"><a href="https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac/" class="btn btn-info">Continue Reading ...</a></div>
+          </div>
       
   </div><!-- /.entry-content -->
 </article><!-- /.hentry -->

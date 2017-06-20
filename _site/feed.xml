@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="https://shelbysolomon.herokuapp.com/feed.xml" />
 <link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com" />
-<updated>2017-06-20T11:45:44-05:00</updated>
+<updated>2017-06-20T15:05:49-05:00</updated>
 <id>https://shelbysolomon.herokuapp.com/</id>
 <author>
   <name>Shelby Solomon</name>
@@ -15,8 +15,8 @@
 
 <entry>
   <title type="html"><![CDATA[Install Git & Git Aware Terminal]]></title>
- <link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com/how-to/osx/linux/git/install-git-and-git-aware/" />
-  <id>https://shelbysolomon.herokuapp.com/how-to/osx/linux/git/install-git-and-git-aware</id>
+ <link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/" />
+  <id>https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware</id>
   <published>2017-06-20T00:00:00-05:00</published>
   <updated>2017-06-20T00:00:00-05:00</updated>
   <author>
@@ -25,9 +25,112 @@
     <email>shelby@shelbysolomon.net</email>
   </author>
   <content type="html">
-    
+    &lt;p&gt;Installing Git on your Mac is silly easy. I’ll walk you through the process in Terminal, as well as guide you through how to install Git Aware Terminal – an awesome little program that keeps you from having to constantly check your Git status.&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;https://shelbysolomon.herokuapp.com/how-to/osx/linux/git/install-git-and-git-aware/&quot;&gt;Install Git &amp; Git Aware Terminal&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;https://shelbysolomon.herokuapp.com&quot;&gt;Shelby Solomon&lt;/a&gt; on June 20, 2017.&lt;/p&gt;
+&lt;!-- more --&gt;
+
+&lt;h2 id=&quot;install-homebrew-if-you-dont-already-have-it&quot;&gt;Install Homebrew, if you don’t already have it&lt;/h2&gt;
+&lt;p&gt;To check and see if you already have Homebrew install, run &lt;code class=&quot;highlighter-rouge&quot;&gt;brew doctor&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Homebrew is the most common package manager for Mac. With Homebrew you can easily install frameworks quickly and easily. You’ll want to run the command below:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  ruby -e &quot;$(curl fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;This may take a while to install, but once it completes, run:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  brew doctor
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;You should receive &lt;code class=&quot;highlighter-rouge&quot;&gt;Your system is ready to brew.&lt;/code&gt;. If you get any errors, you may have non-Homebrew installed packages or other problems.&lt;/p&gt;
+
+&lt;h2 id=&quot;install-git&quot;&gt;Install Git&lt;/h2&gt;
+&lt;p&gt;Now that you have Homebrew set up, all you need to do is run the command:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ brew install git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Once that completes, simply run &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; on the command line, and you should receive something that looks like this:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  usage: git [--version] [--help] [-C &amp;lt;path&amp;gt;] [-c name=value]
+             [--exec-path[=&amp;lt;path&amp;gt;]] [--html-path] [--man-path] [--info-path]
+             [-p | --paginate | --no-pager] [--no-replace-objects] [--bare]
+             [--git-dir=&amp;lt;path&amp;gt;] [--work-tree=&amp;lt;path&amp;gt;] [--namespace=&amp;lt;name&amp;gt;]
+             &amp;lt;command&amp;gt; [&amp;lt;args&amp;gt;]
+
+  These are common Git commands used in various situations:
+
+  start a working area (see also: git help tutorial)
+     clone      Clone a repository into a new directory
+     init       Create an empty Git repository or reinitialize an existing one
+
+  work on the current change (see also: git help everyday)
+     add        Add file contents to the index
+     mv         Move or rename a file, a directory, or a symlink
+     reset      Reset current HEAD to the specified state
+     rm         Remove files from the working tree and from the index
+
+  examine the history and state (see also: git help revisions)
+     bisect     Use binary search to find the commit that introduced a bug
+     grep       Print lines matching a pattern
+     log        Show commit logs
+     show       Show various types of objects
+     status     Show the working tree status
+
+  grow, mark and tweak your common history
+     branch     List, create, or delete branches
+     checkout   Switch branches or restore working tree files
+     commit     Record changes to the repository
+     diff       Show changes between commits, commit and working tree, etc
+     merge      Join two or more development histories together
+     rebase     Reapply commits on top of another base tip
+     tag        Create, list, delete or verify a tag object signed with GPG
+
+  collaborate (see also: git help workflows)
+     fetch      Download objects and refs from another repository
+     pull       Fetch from and integrate with another repository or a local branch
+     push       Update remote refs along with associated objects
+
+  'git help -a' and 'git help -g' list available subcommands and some
+  concept guides. See 'git help &amp;lt;command&amp;gt;' or 'git help &amp;lt;concept&amp;gt;'
+  to read about a specific subcommand or concept.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;If you receive that message, Git is installed, and you’re good to go.&lt;/p&gt;
+
+&lt;h2 id=&quot;bonus-installing-git-aware-terminal&quot;&gt;BONUS: Installing Git Aware Terminal&lt;/h2&gt;
+&lt;p&gt;&lt;em&gt;Caveat: not a sponsored endorsement… I just really love their product!&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;My friends over at Zetta have created a beautifully simple little aid to help you track your current Git status. Any time that you’re in a Git-initialized directory, Git Aware Terminal keeps tabs on all of your changes, and whether they are untracked, tracked, committed, etc. You don’t realize what you’re missing until you have it!&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;../images/untracked.png&quot; alt=&quot;git-aware-terminal untracked&quot; /&gt;
+&lt;img src=&quot;../images/git-behind.png&quot; alt=&quot;git-aware-terminal behind&quot; /&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;to-install&quot;&gt;To install:&lt;/h3&gt;
+&lt;p&gt;Go to your home directory by typing &lt;code class=&quot;highlighter-rouge&quot;&gt;cd ~&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;Then, run the following command:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ git clone https://github.com/zeg-io/git-aware-terminal.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Open your bash config file (located at &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.bash_profile&lt;/code&gt;) – or create the file if it doesn’t exist – and add the following at the top of the file:&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  if [ -f ~/git-aware-terminal/git-aware-terminal.bash ]; then
+    . ~/git-aware-terminal/git-aware-terminal.bash
+  fi
+  PROMPT_COMMAND=&quot;parse_git_branch&quot;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;NOTE: Make sure you don’t already have a &lt;code class=&quot;highlighter-rouge&quot;&gt;PROMPT_COMMAND=&lt;/code&gt; in your file. If you do, add &lt;code class=&quot;highlighter-rouge&quot;&gt;parse_git_branch;&lt;/code&gt; to it.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, run the following to reload your terminal (or just close and restart Terminal):&lt;/p&gt;
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  $ . ~/.bash profile
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;You should be good to go! Let me know what you think of Git Aware Terminal in the comments below or drop me a line on &lt;a href=&quot;http://twitter.com/shelbythedev&quot;&gt;Twitter&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;P.S: While you’re at it, you should give a shoutout to Zetta Engineering Group (&lt;a href=&quot;http://zeg.io&quot;&gt;zeg.io&lt;/a&gt;)!&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/&quot;&gt;Install Git &amp; Git Aware Terminal&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;https://shelbysolomon.herokuapp.com&quot;&gt;Shelby Solomon&lt;/a&gt; on June 20, 2017.&lt;/p&gt;
   </content>
 </entry>
 
@@ -45,6 +148,8 @@
   </author>
   <content type="html">
     &lt;p&gt;If you’re new to Ruby on Rails, or perhaps it’s been too long since you’ve set up a new install, here’s a quick and easy way to set up Ruby and Rails on your computer. I’ve also included some common aides in the process, such as Homebrew and RVM. If you encounter any errors along the way, feel free to drop me a line.&lt;/p&gt;
+
+&lt;!-- more --&gt;
 
 &lt;h2 id=&quot;upgrade-osx&quot;&gt;Upgrade OSX&lt;/h2&gt;
 &lt;p&gt;First things first: if you’re going to be doing a fresh install of Ruby on Rails, now would be an excellent time to run all necessary updates on your Mac. You can check if you have the latest updates by accessing &lt;strong&gt;Apple menu &amp;gt; About This Mac &amp;gt; Overview &amp;gt; Software Update…&lt;/strong&gt;. This will load the App Store and check for any available OSX updates.&lt;/p&gt;
