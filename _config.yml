@@ -2,7 +2,7 @@ title:            Shelby Solomon
 description:      I am a software engineer who specializes in full-stack web application development, primarily in Ruby on Rails and the MEAN (MongoDB, Express, AngularJS, and Node.js) stack.
 
 # put your disqus here
-disqus_shortname:
+disqus_shortname: shelbysolomon-net
 reading_time:     false # if true, shows the estimated reading time for a post
 words_per_minute: 200
 logo:             images/myAvatar.png # logo visible in the topbar
@@ -67,7 +67,7 @@ social:
 background:
 
 # Analytics and webmaster tools stuff goes here
-google_analytics:
+google_analytics: UA-73759471-1
 google_verify:
 # https://ssl.bing.com/webmaster/configure/verify/ownership Option 2 content= goes here
 bing_verify:
