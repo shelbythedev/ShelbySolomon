@@ -4,6 +4,7 @@ title: Install Git & Git Aware Terminal
 share: true
 comments: true
 categories: How-To OSX Git
+excerpt_separator: <!-- more -->
 ---
 
 Installing Git on your Mac is silly easy. I'll walk you through the process in Terminal, as well as guide you through how to install Git Aware Terminal -- an awesome little program that keeps you from having to constantly check your Git status.
