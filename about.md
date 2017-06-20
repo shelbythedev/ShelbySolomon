@@ -4,12 +4,15 @@ title: About & Contact
 share: true
 ---
 
-## Contact Me
+# Contact Me
 
 [shelby@shelbysolomon.net](mailto:shelby@shelbysolomon.net)
-[214.395.0523](tel:+12143950523)
+
+[+1 214.395.0523](tel:+12143950523)
 
 > The only source of knowledge is experience. \- Albert Einstein
+
+# Résumé
 
 ## About Me
 

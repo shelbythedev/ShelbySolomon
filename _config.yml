@@ -20,7 +20,7 @@ url: https://shelbysolomon.herokuapp.com
 menu:
   - title: 'Home'
     url: '/'
-  - title: 'Résumé'
+  - title: 'About & Contact'
     url: '/about'
   - title: 'GitHub'
     url: "https://github.com/shelbythedev"
