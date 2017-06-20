@@ -8,6 +8,8 @@ categories: How-To OSX Git
 
 Installing Git on your Mac is silly easy. I'll walk you through the process in Terminal, as well as guide you through how to install Git Aware Terminal -- an awesome little program that keeps you from having to constantly check your Git status.
 
+<!-- more -->
+
 ## Install Homebrew, if you don't already have it
 To check and see if you already have Homebrew install, run `brew doctor`.
 
