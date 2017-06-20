@@ -2,6 +2,7 @@
 layout: post
 title: Installing Ruby on Rails on Mac
 share: true
+comments: true
 categories: How-To Ruby OSX
 ---
 
