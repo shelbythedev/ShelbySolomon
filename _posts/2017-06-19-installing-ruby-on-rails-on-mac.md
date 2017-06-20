@@ -4,9 +4,12 @@ title: Installing Ruby on Rails on Mac
 share: true
 comments: true
 categories: How-To Ruby OSX
+excerpt_separator: <!-- more -->
 ---
 
 If you're new to Ruby on Rails, or perhaps it's been too long since you've set up a new install, here's a quick and easy way to set up Ruby and Rails on your computer. I've also included some common aides in the process, such as Homebrew and RVM. If you encounter any errors along the way, feel free to drop me a line.
+
+<!-- more -->
 
 ## Upgrade OSX
 First things first: if you're going to be doing a fresh install of Ruby on Rails, now would be an excellent time to run all necessary updates on your Mac. You can check if you have the latest updates by accessing **Apple menu > About This Mac > Overview > Software Update...**. This will load the App Store and check for any available OSX updates.
