@@ -21,3 +21,32 @@ Let's create a new directory within `javascripts/` and name it `angular`.
 ![angular folder](/images/angular_folder.png)
 
 Now, we'll move our `angular.js` file inside this folder. As we create more Angular code, we'll break it out accordingly.
+
+## Update Rails controllers
+For each Rails model that we need to access in Angular, we'll want to update the associated Rails controller to output our information in JSON as well as HTML. Take a look at the example below:
+
+```ruby
+  class ThingsController < ApplicationController
+
+    # ...
+
+    def index
+      @things = Thing.all
+
+      respond_to do |format|
+        format.html                             # HTML for your view
+        format.json { render json: @things }    # We'll send JSON to Angular in a moment
+      end  
+    end
+
+    # ...
+
+  end
+```
+
+## Add ngResource to Your Angular Module
+Next, we'll add the ngResource CDN to our application (alternatively, you can install angular-resource via [Bower](http://bower.io)). Add the following line after your AngularJS inclusion:
+
+```ruby
+  <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-resource.js" %>
+```
