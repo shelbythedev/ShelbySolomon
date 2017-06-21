@@ -18,6 +18,6 @@ For most use cases, when we use AngularJS with Rails, we'll usually contain the 
 
 Let's create a new directory within `javascripts/` and name it `angular`.
 
-![angular folder](../images/angular_folder.png)
+![angular folder](/images/angular_folder.png)
 
-Now, we'll move our `angular.js` files inside this folder. As we create more Angular code, we'll break it out accordingly.
+Now, we'll move our `angular.js` file inside this folder. As we create more Angular code, we'll break it out accordingly.
