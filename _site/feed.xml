@@ -4,7 +4,7 @@
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
 <link rel="self" type="application/atom+xml" href="https://shelbysolomon.herokuapp.com/feed.xml" />
 <link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com" />
-<updated>2017-06-26T13:17:12-05:00</updated>
+<updated>2017-06-26T13:22:08-05:00</updated>
 <id>https://shelbysolomon.herokuapp.com/</id>
 <author>
   <name>Shelby Solomon</name>
@@ -27,7 +27,7 @@
   <content type="html">
     &lt;p&gt;While Ruby on Rails is great for quick and easy app development, the synchronous requests can be a real drag – literally. AngularJS is clean, elegant, and super fast on the client-side, with its beautiful promises and async style. What if you want the best of both worlds? Using ngResource in Angular essentially turns your Rails application into an internal API, seamlessly piggybacking your robust Rails framework… without the bulkiness of Rails dragging you down.&lt;/p&gt;
 
-&lt;!--more--&gt;
+&lt;!-- more --&gt;
 
 &lt;p&gt;&lt;strong&gt;For this article, I’m going to assume you have an existing RoR application with AngularJS added&lt;/strong&gt;&lt;/p&gt;
 
