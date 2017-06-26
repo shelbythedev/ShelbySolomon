@@ -4,12 +4,12 @@ title: Using ngResource with Rails Applications
 share: true
 comments: true
 categories: Ruby AngularJS How-To
-excerpt_separator: <!--more-->
+excerpt_separator: <!-- more -->
 ---
 
 While Ruby on Rails is great for quick and easy app development, the synchronous requests can be a real drag -- literally. AngularJS is clean, elegant, and super fast on the client-side, with its beautiful promises and async style. What if you want the best of both worlds? Using ngResource in Angular essentially turns your Rails application into an internal API, seamlessly piggybacking your robust Rails framework... without the bulkiness of Rails dragging you down.
 
-<!--more-->
+<!-- more -->
 
 **For this article, I'm going to assume you have an existing RoR application with AngularJS added**
 
