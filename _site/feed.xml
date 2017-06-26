@@ -2,26 +2,166 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
 <title type="text">Shelby Solomon</title>
 <generator uri="https://github.com/mojombo/jekyll">Jekyll</generator>
-<link rel="self" type="application/atom+xml" href="https://shelbysolomon.herokuapp.com/feed.xml" />
-<link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com" />
-<updated>2017-06-20T15:26:51-05:00</updated>
-<id>https://shelbysolomon.herokuapp.com/</id>
+<link rel="self" type="application/atom+xml" href="http://localhost:4000/feed.xml" />
+<link rel="alternate" type="text/html" href="http://localhost:4000" />
+<updated>2017-06-26T13:15:51-05:00</updated>
+<id>http://localhost:4000/</id>
 <author>
   <name>Shelby Solomon</name>
-  <uri>https://shelbysolomon.herokuapp.com/</uri>
+  <uri>http://localhost:4000/</uri>
   <email>shelby@shelbysolomon.net</email>
 </author>
 
 
 <entry>
+  <title type="html"><![CDATA[Using ngResource with Rails Applications]]></title>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/" />
+  <id>http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails</id>
+  <published>2017-06-21T00:00:00-05:00</published>
+  <updated>2017-06-21T00:00:00-05:00</updated>
+  <author>
+    <name>Shelby Solomon</name>
+    <uri>http://localhost:4000</uri>
+    <email>shelby@shelbysolomon.net</email>
+  </author>
+  <content type="html">
+    &lt;p&gt;While Ruby on Rails is great for quick and easy app development, the synchronous requests can be a real drag – literally. AngularJS is clean, elegant, and super fast on the client-side, with its beautiful promises and async style. What if you want the best of both worlds? Using ngResource in Angular essentially turns your Rails application into an internal API, seamlessly piggybacking your robust Rails framework… without the bulkiness of Rails dragging you down.&lt;/p&gt;
+
+&lt;!--more--&gt;
+
+&lt;p&gt;&lt;strong&gt;For this article, I’m going to assume you have an existing RoR application with AngularJS added&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;break-out-of-your-angular&quot;&gt;Break out of your Angular&lt;/h2&gt;
+&lt;p&gt;For most use cases, when we use AngularJS with Rails, we’ll usually contain the small amount of code to one single file named something like &lt;code class=&quot;highlighter-rouge&quot;&gt;angular.js&lt;/code&gt; within &lt;code class=&quot;highlighter-rouge&quot;&gt;app/assets/javascripts/&lt;/code&gt;. While this is fine for minimal use, we’re going to be throwing most of our logic into AngularJS to speed things up.&lt;/p&gt;
+
+&lt;p&gt;Let’s create a new directory within &lt;code class=&quot;highlighter-rouge&quot;&gt;javascripts/&lt;/code&gt; and name it &lt;code class=&quot;highlighter-rouge&quot;&gt;angular&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/angular_folder.png&quot; alt=&quot;angular folder&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Now, we’ll move our &lt;code class=&quot;highlighter-rouge&quot;&gt;angular.js&lt;/code&gt; file inside this folder. As we create more Angular code, we’ll break it out accordingly.&lt;/p&gt;
+
+&lt;h2 id=&quot;update-rails-controllers&quot;&gt;Update Rails controllers&lt;/h2&gt;
+&lt;p&gt;For each Rails model that we need to access in Angular, we’ll want to update the associated Rails controller to output our information in JSON as well as HTML. Take a look at the example below:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;ThingsController&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;ApplicationController&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;index&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@things&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt;                            &lt;span class=&quot;c1&quot;&gt;# HTML for your view&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@things&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;   &lt;span class=&quot;c1&quot;&gt;# We'll render data in JSON for AngularJS&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;show&lt;/span&gt;                                    
+      &lt;span class=&quot;vi&quot;&gt;@thing&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;find&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;])&lt;/span&gt;
+
+      &lt;span class=&quot;n&quot;&gt;respond_to&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+        &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;html&lt;/span&gt;                             
+        &lt;span class=&quot;nb&quot;&gt;format&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;json&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;render&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;json: &lt;/span&gt;&lt;span class=&quot;vi&quot;&gt;@thing&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;     
+      &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;  
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;# ...&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;add-ngresource-to-your-angular-module&quot;&gt;Add ngResource to your Angular module&lt;/h2&gt;
+&lt;p&gt;Next, we’ll add the ngResource CDN to our application (alternatively, you can install angular-resource via &lt;a href=&quot;http://bower.io&quot;&gt;Bower&lt;/a&gt;). Add the following line after your AngularJS inclusion:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &amp;lt;%= javascript_include_tag &quot;//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-resource.js&quot; %&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then, we need to inject the ngResource dependency into our AngularJS application module. This will be in &lt;code class=&quot;highlighter-rouge&quot;&gt;/app/assets/javascripts/angular/angular.js&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;angular&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;module&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'myApp'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'ngResource'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;  &lt;span class=&quot;c1&quot;&gt;// Add 'ngResource' to your module&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;create-your-factories&quot;&gt;Create your factories&lt;/h2&gt;
+&lt;p&gt;Now, inside our &lt;code class=&quot;highlighter-rouge&quot;&gt;angular&lt;/code&gt; directory, we’ll create a new file called &lt;code class=&quot;highlighter-rouge&quot;&gt;factories.js&lt;/code&gt;. Inside that file, for each model, you’ll want to create a factory that will handle our CRUD functions. Routing will be based on our Rails router.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;factory&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Thing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'$resource'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$resource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;$resource&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/things/:id.json'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'@id'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'PUT'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+      &lt;span class=&quot;na&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'DELETE'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;})&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;strong&gt;Note that only update and destroy need be defined. Get, save, and query are included in ngResource by default.&lt;/strong&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;using-ngresource-factories-in-your-angular-controllers&quot;&gt;Using ngResource factories in your Angular controllers&lt;/h2&gt;
+&lt;p&gt;Once we have our factory created, we’re ready to retrieve our data and store it in our Angular controller for use in our logic. First, we’ll need to inject our new factory into our Angular controller.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'thingController'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Thing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Logic goes here...&lt;/span&gt;
+
+  &lt;span class=&quot;p&quot;&gt;}]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then, we can go ahead and use our factory to pull data into Angular for use. I’ve included our basic CRUD operations in the example below. For async calls, we’ll use promises and callbacks to speed things up.&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;  &lt;span class=&quot;nx&quot;&gt;myApp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;controller&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'thingController'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'$scope'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Thing'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;$scope&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Use .query() to get all Things&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getAllThings&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({},&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// Params go in hash, if applicable&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// When promise is returned&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;response&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// Do stuff&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+
+        &lt;span class=&quot;c1&quot;&gt;// If an error occurs&lt;/span&gt;
+        &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;err&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// Error handling here&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Use .get to get a single Thing&lt;/span&gt;
+    &lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;getOneThing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;thingId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt;
+      &lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;thingId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;},&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Callback and error handling here&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// We can also use the following calls in the same way as above:&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;save&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({});&lt;/span&gt;       &lt;span class=&quot;c1&quot;&gt;// Thing object to be saved goes in the object hash&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;update&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({});&lt;/span&gt;     &lt;span class=&quot;c1&quot;&gt;// Works same as save, but performs a PUT on existing object&lt;/span&gt;
+    &lt;span class=&quot;nx&quot;&gt;Thing&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;destroy&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({});&lt;/span&gt;    &lt;span class=&quot;c1&quot;&gt;// Calls DELETE on object specified&lt;/span&gt;
+
+  &lt;span class=&quot;p&quot;&gt;}]);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;in-closing&quot;&gt;In closing…&lt;/h2&gt;
+&lt;p&gt;Hopefully now you see how using AngularJS with ngResource can help speed up your Rails application. I tried to keep this decently high-level without going to granular, so I hope you understand the concepts. ngResource can do a lot of great things, and I love using it to keep my Rails app as async as possible. It doesn’t give me a single-page app, but it definitely helps things along.&lt;/p&gt;
+
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/&quot;&gt;Using ngResource with Rails Applications&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;http://localhost:4000&quot;&gt;Shelby Solomon&lt;/a&gt; on June 21, 2017.&lt;/p&gt;
+  </content>
+</entry>
+
+
+<entry>
   <title type="html"><![CDATA[Install Git & Git Aware Terminal]]></title>
- <link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/" />
-  <id>https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware</id>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/how-to/osx/git/install-git-and-git-aware/" />
+  <id>http://localhost:4000/how-to/osx/git/install-git-and-git-aware</id>
   <published>2017-06-20T00:00:00-05:00</published>
   <updated>2017-06-20T00:00:00-05:00</updated>
   <author>
     <name>Shelby Solomon</name>
-    <uri>https://shelbysolomon.herokuapp.com</uri>
+    <uri>http://localhost:4000</uri>
     <email>shelby@shelbysolomon.net</email>
   </author>
   <content type="html">
@@ -101,8 +241,8 @@
 
 &lt;p&gt;My friends over at Zetta have created a beautifully simple little aid to help you track your current Git status. Any time that you’re in a Git-initialized directory, Git Aware Terminal keeps tabs on all of your changes, and whether they are untracked, tracked, committed, etc. You don’t realize what you’re missing until you have it!&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;../images/untracked.png&quot; alt=&quot;git-aware-terminal untracked&quot; /&gt;
-&lt;img src=&quot;../images/git-behind.png&quot; alt=&quot;git-aware-terminal behind&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/untracked.png&quot; alt=&quot;git-aware-terminal untracked&quot; /&gt;
+&lt;img src=&quot;/images/git-behind.png&quot; alt=&quot;git-aware-terminal behind&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;to-install&quot;&gt;To install:&lt;/h3&gt;
 &lt;p&gt;Go to your home directory by typing &lt;code class=&quot;highlighter-rouge&quot;&gt;cd ~&lt;/code&gt;.&lt;/p&gt;
@@ -130,20 +270,20 @@
 
 &lt;p&gt;P.S: While you’re at it, you should give a shoutout to Zetta Engineering Group (&lt;a href=&quot;http://zeg.io&quot;&gt;zeg.io&lt;/a&gt;)!&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/&quot;&gt;Install Git &amp; Git Aware Terminal&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;https://shelbysolomon.herokuapp.com&quot;&gt;Shelby Solomon&lt;/a&gt; on June 20, 2017.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/how-to/osx/git/install-git-and-git-aware/&quot;&gt;Install Git &amp; Git Aware Terminal&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;http://localhost:4000&quot;&gt;Shelby Solomon&lt;/a&gt; on June 20, 2017.&lt;/p&gt;
   </content>
 </entry>
 
 
 <entry>
   <title type="html"><![CDATA[Installing Ruby on Rails on Mac]]></title>
- <link rel="alternate" type="text/html" href="https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac/" />
-  <id>https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac</id>
+ <link rel="alternate" type="text/html" href="http://localhost:4000/how-to/ruby/osx/installing-ruby-on-rails-on-mac/" />
+  <id>http://localhost:4000/how-to/ruby/osx/installing-ruby-on-rails-on-mac</id>
   <published>2017-06-19T00:00:00-05:00</published>
   <updated>2017-06-19T00:00:00-05:00</updated>
   <author>
     <name>Shelby Solomon</name>
-    <uri>https://shelbysolomon.herokuapp.com</uri>
+    <uri>http://localhost:4000</uri>
     <email>shelby@shelbysolomon.net</email>
   </author>
   <content type="html">
@@ -216,7 +356,7 @@
 &lt;h2 id=&quot;final-words&quot;&gt;Final Words&lt;/h2&gt;
 &lt;p&gt;Ruby on Rails is an amazingly powerful framework. It’s fantastic to learn, and fun to use. Once you get the initial configurations complete, you’ll be able to create applications in no time!&lt;/p&gt;
 
-    &lt;p&gt;&lt;a href=&quot;https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac/&quot;&gt;Installing Ruby on Rails on Mac&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;https://shelbysolomon.herokuapp.com&quot;&gt;Shelby Solomon&lt;/a&gt; on June 19, 2017.&lt;/p&gt;
+    &lt;p&gt;&lt;a href=&quot;http://localhost:4000/how-to/ruby/osx/installing-ruby-on-rails-on-mac/&quot;&gt;Installing Ruby on Rails on Mac&lt;/a&gt; was originally published by Shelby Solomon at &lt;a href=&quot;http://localhost:4000&quot;&gt;Shelby Solomon&lt;/a&gt; on June 19, 2017.&lt;/p&gt;
   </content>
 </entry>
 

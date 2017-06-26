@@ -1,0 +1,462 @@
+<!doctype html>
+<!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if (IE 7)&!(IEMobile)]><html class="no-js lt-ie9 lt-ie8" lang="en"><![endif]-->
+<!--[if (IE 8)&!(IEMobile)]><html class="no-js lt-ie9" lang="en"><![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"><!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<title>Using ngResource with Rails Applications &#8211; Shelby Solomon</title>
+<meta name="description" content="I am a software engineer who specializes in full-stack web application development, primarily in Ruby on Rails and the MEAN (MongoDB, Express, AngularJS, and Node.js) stack.">
+<meta name="keywords" content="">
+
+<!-- Twitter Cards -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:site" content="@shelbythedev">
+<meta name="twitter:creator" content="@shelbythedev">
+
+<!-- Open Graph -->
+<meta property="og:locale" content="en_US">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Using ngResource with Rails Applications">
+<meta property="og:description" content="I am a software engineer who specializes in full-stack web application development, primarily in Ruby on Rails and the MEAN (MongoDB, Express, AngularJS, and Node.js) stack.">
+<meta property="og:url" content="http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/">
+<meta property="og:site_name" content="Shelby Solomon">
+<meta property="og:image" content="http://localhost:4000/images/images/myAvatar.png">
+
+
+
+
+
+<link rel="canonical" href="http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/">
+<link href="http://localhost:4000/feed.xml" type="application/atom+xml" rel="alternate" title="Shelby Solomon Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="http://localhost:4000/assets/css/main.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/jquery.mmenu.all.css">
+<link rel="stylesheet" href="http://localhost:4000/assets/css/jquery.floating-social-share.min.css">
+<!-- Webfonts -->
+<link href="//fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic" rel="stylesheet" type="text/css">
+
+<meta http-equiv="cleartype" content="on">
+
+<!-- Load Modernizr -->
+<script type="text/javascript" src="http://localhost:4000/assets/js/vendor/modernizr-2.6.2.custom.min.js"></script>
+
+<!-- Icons -->
+<!-- 16x16 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.ico">
+<!-- 32x32 -->
+<link rel="shortcut icon" href="http://localhost:4000/favicon.png">
+<!-- 57x57 (precomposed) for iPhone 3GS, pre-2011 iPod Touch and older Android devices -->
+<link rel="apple-touch-icon-precomposed" href="http://localhost:4000/images/apple-touch-icon-precomposed.png">
+<!-- 72x72 (precomposed) for 1st generation iPad, iPad 2 and iPad mini -->
+<link rel="apple-touch-icon-precomposed" sizes="72x72" href="http://localhost:4000/images/apple-touch-icon-72x72-precomposed.png">
+<!-- 114x114 (precomposed) for iPhone 4, 4S, 5 and post-2011 iPod Touch -->
+<link rel="apple-touch-icon-precomposed" sizes="114x114" href="http://localhost:4000/images/apple-touch-icon-114x114-precomposed.png">
+<!-- 144x144 (precomposed) for iPad 3rd and 4th generation -->
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="http://localhost:4000/images/apple-touch-icon-144x144-precomposed.png">
+
+
+
+
+</head>
+
+<body id="post" >
+
+<!--[if lt IE 9]><div class="upgrade"><strong><a href="http://whatbrowser.org/">Your browser is quite old!</strong> Why not upgrade to a different browser to better enjoy this site?</a></div><![endif]-->
+
+
+
+<div class="header-menu header-menu-top">
+    <ul class="header-item-container">
+      <li class="header-item-title header-toggle "><a href="#menu"><h2><i class="fa fa-bars"></i></h2></a></li>
+      <li class="header-item-title">
+        <a href="http://localhost:4000/">
+          
+            <img class="logo" src="http://localhost:4000/images/myAvatar.png" alt="Shelby Solomon">
+          
+          <a href="http://localhost:4000/" class="title"> Shelby Solomon</a>
+        </a>
+      </li>
+      
+        
+        
+
+        
+          <li class="header-item "><a href="http://localhost:4000/categories"><h3>Categories</h3></a>
+            <ul class="header-submenu">
+              
+                
+                  <li class="sub-item"><a href="http://localhost:4000/categories/#AngularJS">AngularJS</a></li>
+              
+                
+                  <li class="sub-item"><a href="http://localhost:4000/categories/#Git">Git</a></li>
+              
+                
+                  <li class="sub-item"><a href="http://localhost:4000/categories/#How-To">How-To</a></li>
+              
+                
+                  <li class="sub-item"><a href="http://localhost:4000/categories/#OSX">OSX</a></li>
+              
+                
+                  <li class="sub-item"><a href="http://localhost:4000/categories/#Ruby">Ruby</a></li>
+              
+            </ul>
+          </li>
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="https://github.com/shelbythedev" target="_blank"><h3>GitHub</h3></a></li>
+            
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="http://localhost:4000/about"><h3>About & Contact</h3></a></li>
+            
+        
+      
+        
+        
+
+        
+            
+                <li class="header-item "><a href="http://localhost:4000/"><h3>Home</h3></a></li>
+            
+        
+      
+      <li class="header-item"><a href="http://localhost:4000/search"><h3><i class="fa fa-search"></i></h3></a></li>
+    </ul>
+  </div>
+<div class="entry-header">
+  <div class="header-title">
+    <div class="header-title-wrap">
+      <h1>Using ngResource with Rails Applications</h1>
+      
+        <h2><span class="entry-date date published updated"><time datetime="2017-06-21T00:00:00-05:00">June 21, 2017</time></span></h2>
+      
+
+      
+          <p class="entry-reading-time">
+            &nbsp;
+          </p><!-- /.entry-reading-time -->
+      
+    </div><!-- /.header-title-wrap -->
+  </div><!-- /.header-title -->
+</div><!-- /.entry-header -->
+
+
+<nav id="menu" style="display: none">
+  <ul>
+    
+      
+        <li><a href="http://localhost:4000/"><h3>Home</h3></a></li>
+      
+    
+      
+        <li><a href="http://localhost:4000/about"><h3>About & Contact</h3></a></li>
+      
+    
+      
+        <li><a href="http://localhost:4000https://github.com/shelbythedev"><h3>GitHub</h3></a></li>
+      
+    
+      
+        <li><a href="http://localhost:4000/categories"><h3>Categories</h3></a>
+          <ul>
+            
+              
+                <li><a href="http://localhost:4000/categories/#AngularJS">AngularJS</a></li>
+            
+              
+                <li><a href="http://localhost:4000/categories/#Git">Git</a></li>
+            
+              
+                <li><a href="http://localhost:4000/categories/#How-To">How-To</a></li>
+            
+              
+                <li><a href="http://localhost:4000/categories/#OSX">OSX</a></li>
+            
+              
+                <li><a href="http://localhost:4000/categories/#Ruby">Ruby</a></li>
+            
+          </ul>
+        </li>
+      
+    
+  </ul>
+</nav>
+
+
+  <a href="https://twitter.com/shelbythedev" class="btn btn-info button-twitter" data-show-count="false" data-size="large"><i class="fa fa-twitter"></i> <span> | Follow @shelbythedev</span></a>
+
+
+
+<div id="main" role="main">
+  <article class="hentry">
+    <div class="entry-content">
+        
+      <h1 class="post-title entry-title">Using ngResource with Rails Applications</h1>
+      <p>While Ruby on Rails is great for quick and easy app development, the synchronous requests can be a real drag – literally. AngularJS is clean, elegant, and super fast on the client-side, with its beautiful promises and async style. What if you want the best of both worlds? Using ngResource in Angular essentially turns your Rails application into an internal API, seamlessly piggybacking your robust Rails framework… without the bulkiness of Rails dragging you down.</p>
+
+<!--more-->
+
+<p><strong>For this article, I’m going to assume you have an existing RoR application with AngularJS added</strong></p>
+
+<h2 id="break-out-of-your-angular">Break out of your Angular</h2>
+<p>For most use cases, when we use AngularJS with Rails, we’ll usually contain the small amount of code to one single file named something like <code class="highlighter-rouge">angular.js</code> within <code class="highlighter-rouge">app/assets/javascripts/</code>. While this is fine for minimal use, we’re going to be throwing most of our logic into AngularJS to speed things up.</p>
+
+<p>Let’s create a new directory within <code class="highlighter-rouge">javascripts/</code> and name it <code class="highlighter-rouge">angular</code>.</p>
+
+<p><img src="/images/angular_folder.png" alt="angular folder" /></p>
+
+<p>Now, we’ll move our <code class="highlighter-rouge">angular.js</code> file inside this folder. As we create more Angular code, we’ll break it out accordingly.</p>
+
+<h2 id="update-rails-controllers">Update Rails controllers</h2>
+<p>For each Rails model that we need to access in Angular, we’ll want to update the associated Rails controller to output our information in JSON as well as HTML. Take a look at the example below:</p>
+
+<div class="language-ruby highlighter-rouge"><pre class="highlight"><code>  <span class="k">class</span> <span class="nc">ThingsController</span> <span class="o">&lt;</span> <span class="no">ApplicationController</span>
+
+    <span class="c1"># ...</span>
+
+    <span class="k">def</span> <span class="nf">index</span>
+      <span class="vi">@things</span> <span class="o">=</span> <span class="no">Thing</span><span class="p">.</span><span class="nf">all</span>
+
+      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">html</span>                            <span class="c1"># HTML for your view</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="vi">@things</span> <span class="p">}</span>   <span class="c1"># We'll render data in JSON for AngularJS</span>
+      <span class="k">end</span>
+    <span class="k">end</span>
+
+    <span class="k">def</span> <span class="nf">show</span>                                    
+      <span class="vi">@thing</span> <span class="o">=</span> <span class="no">Thing</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="n">params</span><span class="p">[</span><span class="ss">:id</span><span class="p">])</span>
+
+      <span class="n">respond_to</span> <span class="k">do</span> <span class="o">|</span><span class="nb">format</span><span class="o">|</span>
+        <span class="nb">format</span><span class="p">.</span><span class="nf">html</span>                             
+        <span class="nb">format</span><span class="p">.</span><span class="nf">json</span> <span class="p">{</span> <span class="n">render</span> <span class="ss">json: </span><span class="vi">@thing</span> <span class="p">}</span>     
+      <span class="k">end</span>  
+    <span class="k">end</span>
+
+    <span class="c1"># ...</span>
+
+  <span class="k">end</span>
+</code></pre>
+</div>
+
+<h2 id="add-ngresource-to-your-angular-module">Add ngResource to your Angular module</h2>
+<p>Next, we’ll add the ngResource CDN to our application (alternatively, you can install angular-resource via <a href="http://bower.io">Bower</a>). Add the following line after your AngularJS inclusion:</p>
+
+<div class="highlighter-rouge"><pre class="highlight"><code>  &lt;%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/angularjs/X.Y.Z/angular-resource.js" %&gt;
+</code></pre>
+</div>
+
+<p>Then, we need to inject the ngResource dependency into our AngularJS application module. This will be in <code class="highlighter-rouge">/app/assets/javascripts/angular/angular.js</code>.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="kd">var</span> <span class="nx">myApp</span> <span class="o">=</span> <span class="nx">angular</span><span class="p">.</span><span class="nx">module</span><span class="p">(</span><span class="s1">'myApp'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'ngResource'</span><span class="p">]);</span>  <span class="c1">// Add 'ngResource' to your module</span>
+</code></pre>
+</div>
+
+<h2 id="create-your-factories">Create your factories</h2>
+<p>Now, inside our <code class="highlighter-rouge">angular</code> directory, we’ll create a new file called <code class="highlighter-rouge">factories.js</code>. Inside that file, for each model, you’ll want to create a factory that will handle our CRUD functions. Routing will be based on our Rails router.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="nx">myApp</span><span class="p">.</span><span class="nx">factory</span><span class="p">(</span><span class="s1">'Thing'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'$resource'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$resource</span><span class="p">){</span>
+    <span class="k">return</span> <span class="nx">$resource</span><span class="p">(</span><span class="s1">'/things/:id.json'</span><span class="p">,</span> <span class="p">{</span><span class="na">id</span><span class="p">:</span> <span class="s1">'@id'</span><span class="p">},</span> <span class="p">{</span>
+      <span class="na">update</span><span class="p">:</span> <span class="p">{</span><span class="na">method</span><span class="p">:</span> <span class="s1">'PUT'</span><span class="p">},</span>
+      <span class="na">destroy</span><span class="p">:</span> <span class="p">{</span><span class="na">method</span><span class="p">:</span> <span class="s1">'DELETE'</span><span class="p">}</span>
+    <span class="p">})</span>
+  <span class="p">}]);</span>
+</code></pre>
+</div>
+
+<p><strong>Note that only update and destroy need be defined. Get, save, and query are included in ngResource by default.</strong></p>
+
+<h2 id="using-ngresource-factories-in-your-angular-controllers">Using ngResource factories in your Angular controllers</h2>
+<p>Once we have our factory created, we’re ready to retrieve our data and store it in our Angular controller for use in our logic. First, we’ll need to inject our new factory into our Angular controller.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="nx">myApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'thingController'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'Thing'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">Thing</span><span class="p">){</span>
+
+    <span class="c1">// Logic goes here...</span>
+
+  <span class="p">}]);</span>
+</code></pre>
+</div>
+
+<p>Then, we can go ahead and use our factory to pull data into Angular for use. I’ve included our basic CRUD operations in the example below. For async calls, we’ll use promises and callbacks to speed things up.</p>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code>  <span class="nx">myApp</span><span class="p">.</span><span class="nx">controller</span><span class="p">(</span><span class="s1">'thingController'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'$scope'</span><span class="p">,</span> <span class="s1">'Thing'</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">$scope</span><span class="p">,</span> <span class="nx">Thing</span><span class="p">){</span>
+
+    <span class="c1">// Use .query() to get all Things</span>
+    <span class="kd">function</span> <span class="nx">getAllThings</span><span class="p">(){</span>
+      <span class="nx">Thing</span><span class="p">.</span><span class="nx">query</span><span class="p">({},</span>    <span class="c1">// Params go in hash, if applicable</span>
+
+        <span class="c1">// When promise is returned</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">){</span>
+          <span class="c1">// Do stuff</span>
+        <span class="p">},</span>
+
+        <span class="c1">// If an error occurs</span>
+        <span class="kd">function</span><span class="p">(</span><span class="nx">err</span><span class="p">){</span>
+          <span class="c1">// Error handling here</span>
+        <span class="p">}</span>
+      <span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="c1">// Use .get to get a single Thing</span>
+    <span class="kd">function</span> <span class="nx">getOneThing</span><span class="p">(</span><span class="nx">thingId</span><span class="p">){</span>
+      <span class="nx">Thing</span><span class="p">.</span><span class="nx">get</span><span class="p">({</span><span class="na">id</span><span class="p">:</span> <span class="nx">thingId</span><span class="p">},</span>
+        <span class="c1">// Callback and error handling here</span>
+      <span class="p">);</span>
+    <span class="p">};</span>
+
+    <span class="c1">// We can also use the following calls in the same way as above:</span>
+    <span class="nx">Thing</span><span class="p">.</span><span class="nx">save</span><span class="p">({});</span>       <span class="c1">// Thing object to be saved goes in the object hash</span>
+    <span class="nx">Thing</span><span class="p">.</span><span class="nx">update</span><span class="p">({});</span>     <span class="c1">// Works same as save, but performs a PUT on existing object</span>
+    <span class="nx">Thing</span><span class="p">.</span><span class="nx">destroy</span><span class="p">({});</span>    <span class="c1">// Calls DELETE on object specified</span>
+
+  <span class="p">}]);</span>
+</code></pre>
+</div>
+
+<h2 id="in-closing">In closing…</h2>
+<p>Hopefully now you see how using AngularJS with ngResource can help speed up your Rails application. I tried to keep this decently high-level without going to granular, so I hope you understand the concepts. ngResource can do a lot of great things, and I love using it to keep my Rails app as async as possible. It doesn’t give me a single-page app, but it definitely helps things along.</p>
+
+      <footer class="entry-meta">
+        <span class="entry-tags"></span>
+        
+        <span class="author vcard"><span class="fn">Shelby Solomon</span></span>
+        <div class="social-share">
+  <ul class="socialcount socialcount-small inline-list">
+    <li class="facebook"><a href="https://www.facebook.com/sharer/sharer.php?u=http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/" title="Share on Facebook"><span class="count"><i class="fa fa-facebook-square"></i> Like</span></a></li>
+    <li class="twitter"><a href="https://twitter.com/intent/tweet?text=http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/" title="Share on Twitter"><span class="count"><i class="fa fa-twitter-square"></i> Tweet</span></a></li>
+    <li class="googleplus"><a href="https://plus.google.com/share?url=http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/" title="Share on Google Plus"><span class="count"><i class="fa fa-google-plus-square"></i> +1</span></a></li>
+  </ul>
+</div><!-- /.social-share -->
+
+      </footer>
+    </div><!-- /.entry-content -->
+    <div class="read-more">
+  <div class="read-more-header">
+    <a href="http://shelbysolomon.net" class="read-more-btn">About the Author</a>
+  </div><!-- /.read-more-header -->
+  <div class="read-more-content author-info">
+    <h3>Shelby Solomon</h3>
+    <div class="author-container">
+      <img class="author-img" src="http://localhost:4000/images/avatar.jpg" alt="Shelby Solomon" />
+      <div class="author-bio">Shelby is a software engineer who specializes in full-stack web application development, primarily in Ruby on Rails and the MEAN (MongoDB, Express, AngularJS, and Node.js) stack.</div>
+    </div>
+    <div class="author-share">
+      <ul class="list-inline social-buttons">
+        
+          <li><a href="https://github.com/shelbythedev" target="_blank"><i class="fa fa-github fa-fw"></i></a></li>
+        
+          <li><a href="https://linkedin.com/in/ssolomondev" target="_blank"><i class="fa fa-linkedin fa-fw"></i></a></li>
+        
+      </ul>
+      
+        <a aria-label="Follow @shelbythedev on GitHub" data-style="mega" href="https://github.com/shelbythedev" class="github-button">Follow @shelbythedev</a>
+      
+      <br>
+      
+        <a href="https://twitter.com/shelbythedev" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @shelbythedev</a>
+      
+    </div>
+  </div>
+</div>
+
+    <section id="disqus_thread"></section><!-- /#disqus_thread -->
+    <div class="read-more">
+  
+    <div class="read-more-header">
+      <a href="http://localhost:4000/how-to/osx/git/install-git-and-git-aware/" class="read-more-btn">Read More</a>
+    </div><!-- /.read-more-header -->
+    <div class="read-more-content">
+      <h3><a href="http://localhost:4000/how-to/osx/git/install-git-and-git-aware/" title="Install Git & Git Aware Terminal">Install Git & Git Aware Terminal</a></h3>
+      <p>Installing Git on your Mac is silly easy. I’ll walk you through the process in Terminal, as well as guide you through how to install Git ...&hellip; <a href="http://localhost:4000/how-to/osx/git/install-git-and-git-aware/">Continue reading</a></p>
+    </div><!-- /.read-more-content -->
+  
+  <div class="read-more-list">
+    
+      <div class="list-item">
+        <h4><a href="http://localhost:4000/how-to/ruby/osx/installing-ruby-on-rails-on-mac/" title="Installing Ruby on Rails on Mac">Installing Ruby on Rails on Mac</a></h4>
+        <span>Published on June 19, 2017</span>
+      </div><!-- /.list-item -->
+    
+  </div><!-- /.read-more-list -->
+</div><!-- /.read-more -->
+  </article>
+</div><!-- /#main -->
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script type="text/javascript">window.jQuery || document.write('<script type="text/javascript" src="http://localhost:4000/assets/js/vendor/jquery-1.9.1.min.js"><\/script>')</script>
+<script type="text/javascript" src="http://localhost:4000/assets/js/scripts.min.js"></script>
+<script type="text/javascript" async defer id="github-bjs" src="https://buttons.github.io/buttons.js"></script>
+<script type="text/javascript">!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+
+
+<!-- Asynchronous Google Analytics snippet -->
+<script type="text/javascript">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-73759471-1', 'auto');
+  ga('require', 'linkid', 'linkid.js');
+  ga('send', 'pageview');
+</script>
+
+
+
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'shelbysolomon-net'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function () {
+            var s = document.createElement('script'); s.async = true;
+            s.type = 'text/javascript';
+            s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+            (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+        }());
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+
+
+
+
+<script type="text/javascript">
+    sharing();
+</script>
+
+
+
+<div class="footer-wrapper">
+  <footer role="contentinfo">
+    <span>&copy; 2017 Shelby Solomon.  <a href="mailto:shelby@shelbysolomon.net">shelby@shelbysolomon.net</a></span>
+
+  </footer>
+</div><!-- /.footer-wrapper -->
+
+</body>
+</html>

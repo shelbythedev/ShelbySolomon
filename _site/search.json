@@ -1,10 +1,18 @@
 [
   
     {
+      "title"    : "Using ngResource with Rails Applications",
+      "category" : "",
+      "tags"     : "",
+      "url"      : "http://localhost:4000/ruby/angularjs/how-to/Using-ngResource-with-Rails/",
+      "date"     : "2017-06-21 00:00:00 -0500"
+    } ,
+  
+    {
       "title"    : "Install Git &amp; Git Aware Terminal",
       "category" : "",
       "tags"     : "",
-      "url"      : "https://shelbysolomon.herokuapp.com/how-to/osx/git/install-git-and-git-aware/",
+      "url"      : "http://localhost:4000/how-to/osx/git/install-git-and-git-aware/",
       "date"     : "2017-06-20 00:00:00 -0500"
     } ,
   
@@ -12,7 +20,7 @@
       "title"    : "Installing Ruby on Rails on Mac",
       "category" : "",
       "tags"     : "",
-      "url"      : "https://shelbysolomon.herokuapp.com/how-to/ruby/osx/installing-ruby-on-rails-on-mac/",
+      "url"      : "http://localhost:4000/how-to/ruby/osx/installing-ruby-on-rails-on-mac/",
       "date"     : "2017-06-19 00:00:00 -0500"
     } 
   
