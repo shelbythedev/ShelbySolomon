@@ -83,8 +83,8 @@ If you receive that message, Git is installed, and you're good to go.
 
 My friends over at Zetta have created a beautifully simple little aid to help you track your current Git status. Any time that you're in a Git-initialized directory, Git Aware Terminal keeps tabs on all of your changes, and whether they are untracked, tracked, committed, etc. You don't realize what you're missing until you have it!
 
-![git-aware-terminal untracked](../images/untracked.png)
-![git-aware-terminal behind](../images/git-behind.png)
+![git-aware-terminal untracked](/images/untracked.png)
+![git-aware-terminal behind](/images/git-behind.png)
 
 ### To install:
 Go to your home directory by typing `cd ~`.
